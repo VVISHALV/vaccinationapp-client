@@ -1,0 +1,33 @@
+<form #searchUser="ngForm" (ngSubmit)="searchUser.valid && onSearch(searchUser)">
+  <input type="text" maxlength="3" #user_id="ngModel" ngModel name="user_id" placeholder="Search User ID" required
+    [ngClass]="{ 'invalid-textbox': searchUser.submitted && !user_id.valid }" />
+    <div *ngIf="searchUser.submitted && user_id.errors">
+    <label class="validation-message">Enter User ID</label>
+  </div>
+  <input type="submit" value="Search User" />
+</form>
+<table matSort>
+  <tr>
+    <th mat-sort-header="user_id">User ID</th>
+    <th mat-sort-header="firstname">User Name</th>
+    <th mat-sort-header="slot">Slot</th>
+    <th mat-sort-header="dosage">Dosage Taken</th>
+    <th mat-sort-header="date">Booked Date</th>
+    <th mat-sort-header="city">City</th>
+    <th mat-sort-header="status">Status</th>
+    <th mat-sort-header="taken_date">Vaccinated</th>
+  </tr>
+
+  <tr *ngFor="let users of sortedData">
+    <td>{{users.user_id}}</td>
+    <td>{{users.firstname}}</td>
+    <td>{{users.slot}}</td>
+    <td>{{users.dosage}}</td>
+    <td>{{toDate(users.date)}}</td>
+    <td>{{users.city}}</td>
+    <td>{{users.status}}</td>
+    <td>{{toDate(users.taken_date)}}</td>
+    <td *ngIf="users.status==0"><input id="approve" type="submit" (click)="approve(users.user_id)" value="Approve"></td>
+  </tr>
+
+</table>

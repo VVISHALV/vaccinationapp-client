@@ -1,0 +1,29 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <mat-card>
+      <div>
+        <h2>CITIES AVAILABLE</h2>
+        <table>
+          <th>CITIES</th>
+          <th>CITY ID</th>
+          <tr *ngFor="let item of cityArray">
+            <td>{{
+              item.city
+              }}</td>
+            <td>{{item.city_id}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <form #addCampForm="ngForm" (ngSubmit)="addCampForm.valid && onSubmit(addCampForm)">
+        <input type="text" #city="ngModel" ngModel name="city" placeholder="Enter City" required />
+
+        <input type="submit" value="Add city" />
+      </form>
+      <div class="success" *ngIf="campAdded">Camp Added successfully</div>
+      <div class="alert" *ngIf="alrdyExist">
+        City Already Exist
+      </div>
+    </mat-card>
+  </div>
+</div>

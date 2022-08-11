@@ -1,0 +1,54 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <mat-card>
+      <h1>Book your Slot</h1>
+      <div>
+        <table>
+          <div *ngIf="loggerData[0]">
+            <th>Dosage</th>
+            <th>City</th>
+            <th>Taken Date</th>
+            <tr *ngFor="let item of loggerData">
+              <td>{{item.dosage}}</td>
+              <td>{{item.city}}</td>
+              <td>{{toDate(item.taken_date)}}</td>
+            </tr>
+          </div>
+        </table>
+      </div>
+
+      <div *ngIf="eligible">
+        <h2>Book slots</h2>
+        <form #bookSlotForm="ngForm" (ngSubmit)="bookSlotForm.valid && onBook(bookSlotForm)" class="flat">
+          <input #user_id="ngModel" [(ngModel)]="loggedUser.user_id" type="hidden" name="user_id" />
+          <select #city_id="ngModel" ngModel (change)="cityChanged($event.target)" required id="city_id" name="city_id">
+            <option value="" selected disabled hidden>Select City</option>
+            <option *ngFor="let item of cityArray.keys()" [value]="cityArray.get(item)">{{ item }}</option>
+          </select>
+          <div>
+            <select #slot="ngModel" ngModel required name="slot" id="slot">
+              <option value="" selected disabled hidden>Choose slot</option>
+              <option *ngFor="let item of currentSlots" [value]="item">
+                {{toSlotString(item) }}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="bookSlotForm.submitted && !bookSlotForm.valid">
+            <label class="validation-message">Fill all requirements</label>
+          </div>
+          <input type="submit" value="Book" />
+        </form>
+      </div>
+      <div class="success" *ngIf="fullyVaccinated">
+        <h3>YOU ARE FULLY VACCINATED ..YOU CAN DOWNLOAD YOUR CERTIFICATE</h3>
+      </div>
+      <div class="success" *ngIf="bookedAndPending">
+        <h4>Go to the centre to get vaccinated </h4>
+      </div>
+      <div class="success" *ngIf="waitDays">
+        <h2>YOU STILL HAVE {{ dayGap }} DAYS.DOWNLOAD YOUR CERTIFICATE</h2>
+      </div>
+      <div class="success" *ngIf="booked">Booked successfully</div>
+    </mat-card>
+  </div>
+</div>

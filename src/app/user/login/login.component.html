@@ -1,0 +1,20 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="inactive underlineHover">Login to register your slot</h2>
+    <router-outlet></router-outlet>
+    <form #loginForm="ngForm" (ngSubmit)="loginForm.valid && onLogin(loginForm)">
+      <input type="text" maxlength="10" #mobile="ngModel" ngModel name="mobile" placeholder="User or Mobile Number"
+      required [ngClass]="{ 'invalid-textbox': loginForm.submitted && !mobile.valid }" />
+      <input type="password" #password="ngModel" ngModel name="password" placeholder="Password" minlength="4" required
+      [ngClass]="{'invalid-textbox': loginForm.submitted && !password.valid}" />
+      <div *ngIf="loginForm.submitted && password.errors">
+        <label class="validation-message">Enter atleast 4 characters.</label>
+      </div>
+      <input type="submit" value="Login" />
+    </form>
+    <div class="success" *ngIf="showSucessMessage">Saved successfully</div>
+    <div class="success" *ngIf="logged">logged successfully</div>
+    <div class="alert" *ngIf="serverErrorMessages">{{ serverErrorMessages }}</div>
+    Dont have an account?<a routerLink="/signup">Register Now</a><br /><br />
+  </div>
+</div>

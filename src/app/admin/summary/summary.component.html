@@ -1,0 +1,50 @@
+<div class="wrapper fadeInDown">
+  <div>
+    <h2>Choose City</h2>
+
+    <select #city (change)="cityChanged(city.value)">
+      <option [value]="0">All</option>
+      <option [value]="item.city_id" *ngFor="let item of cityArray">
+        {{ item.city }}
+      </option>
+    </select>
+  </div>
+  <div class="bars">
+    <h3>FULLY VACCINATED</h3>
+    <circle-progress [percent]="FVprcnt"></circle-progress>
+    <h3>HALF VACCINATED</h3>
+    <circle-progress [percent]="HVprcnt"></circle-progress>
+    <h3>YET TO VACCINATED</h3>
+    <circle-progress [percent]="NVprcnt"></circle-progress>
+  </div>
+
+  <table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header="user_id">User ID</th>
+      <th mat-sort-header="firstname">User Name</th>
+      <th mat-sort-header="slot">Slot</th>
+      <th mat-sort-header="dosage">Dosage Taken</th>
+      <th mat-sort-header="date">Booked Date</th>
+      <th mat-sort-header="city">City</th>
+      <th mat-sort-header="status">Status</th>
+      <th mat-sort-header="taken_date">Vaccinated</th>
+    </tr>
+
+    <tr *ngFor="let users of sortedData">
+      <td>{{ users.user_id }}</td>
+      <td>{{ users.firstname }}</td>
+
+      <td>{{ users.slot }}</td>
+      <td>{{ users.dosage }}</td>
+      <td>{{ toDate(users.date) }}</td>
+      <td>{{ users.city }}</td>
+      <td>{{ users.status }}</td>
+      <td>{{ toDate(users.taken_date) }}</td>
+    </tr>
+    <div class="center">
+      <mat-paginator [length]="count" [pageIndex]="pageIndex" [pageSize]="pageSize" (page)="getPage($event)"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </table>
+</div>

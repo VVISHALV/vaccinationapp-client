@@ -1,0 +1,13 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <mat-card>
+      <div>
+        <h2>Get Certificate</h2>
+        <input type="submit" (click)="onExportPdf()" value="Get Certificate" />
+      </div>
+      <div class="alert" *ngIf="serverErrorMessages">
+        {{ serverErrorMessages }}
+      </div>
+    </mat-card>
+  </div>
+</div>

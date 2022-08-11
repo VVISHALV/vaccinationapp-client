@@ -1,0 +1,34 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <mat-card>
+      <h2>Your Data</h2>
+      <table>
+        <tr></tr>
+        <tr>
+          <td>User ID</td>
+          <td>{{ getLocalStorage("loggeduser").user_id }}</td>
+        </tr>
+        <tr>
+          <td>FirstName</td>
+          <td>{{ getLocalStorage("loggeduser").firstname }}</td>
+        </tr>
+        <tr>
+          <td>lastName</td>
+          <td>{{ getLocalStorage("loggeduser").lastname }}</td>
+        </tr>
+        <tr>
+          <td>Mobile Number</td>
+          <td>{{ getLocalStorage("loggeduser").mobile }}</td>
+        </tr>
+        <tr>
+          <td>Aadhar Number</td>
+          <td>{{ getLocalStorage("loggeduser").aadhaar }}</td>
+        </tr>
+        <tr>
+          <td>Date-of-birth</td>
+          <td>{{ date }}</td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
+</div>

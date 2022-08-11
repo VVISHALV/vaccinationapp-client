@@ -1,0 +1,53 @@
+*,*::before,*::after{
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                img{
+                    width: 800px;
+                    background-color: brown;
+                }
+                .mydiv{
+                    position: absolute;
+                    width: 600px;
+                    left:160px;
+                    height: 150px;
+                    top: 303px;
+                   
+                }
+                
+                .mydiv1{
+                    position: absolute;
+                    width: 600px;
+                    left:160px;
+                    height: 150px;
+                    top: 515px;
+                    
+                    
+                }
+                .qrcode{
+                    position: absolute;
+                    width: 315px;
+                    left:520px;
+                    height: 280px;
+                    top: 760px;
+                    background-color:white;
+                    
+                }
+                
+               
+
+                h4{
+                    font-size: 1.05em;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    line-height: 49;
+                }
+                @page {
+                    size: A4;
+                    margin: 0mm;
+                }
+             body{
+                background-color:rgb(247, 247, 247);
+                width:auto;
+                height:auto;
+             }

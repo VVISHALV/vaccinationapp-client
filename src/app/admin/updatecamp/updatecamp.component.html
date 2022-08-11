@@ -1,0 +1,36 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <mat-card>
+      <div>
+        <table>
+          <tr>
+            <td>City ID</td>
+            <td>City</td>
+            <td>Morning</td>
+            <td>Afternoon</td>
+            <td>Evening</td>
+          </tr>
+          <tr *ngFor="let item of map.keys()">
+            <td>{{ item }}</td>
+            <td>{{ map.get(item)?.city }}</td>
+            <td>{{ map.get(item)?.morning }}</td>
+            <td>{{ map.get(item)?.afternoon }}</td>
+            <td>{{ map.get(item)?.evening }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="bars">
+        <form #updateCampForm="ngForm" (ngSubmit)="updateCampForm.valid && onUpdate(updateCampForm)">
+          <input type="text" #city="ngModel" ngModel name="city" placeholder="Enter City" required />
+          <input type="number" #morning="ngModel" ngModel name="morning" placeholder="Morning" />
+          <input type="number" #afternoon="ngModel" ngModel name="afternoon" placeholder="Afternoon" />
+          <input type="number" #evening="ngModel" ngModel name="evening" placeholder="Evening" />
+
+          <input type="submit" value="Update city" />
+        </form>
+      </div>
+      <div class="success" *ngIf="updated">Camp Updated successfully</div>
+      <div class="alert" *ngIf="serverErrorMessages">{{ serverErrorMessages }}</div>
+    </mat-card>
+  </div>
+</div>
